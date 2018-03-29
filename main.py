@@ -25,30 +25,28 @@ caesar_form = """
         </style>
     </head>
     <body>
-    <form action="/encrypted" method="post">
+    <form action="/" method="post">
         <label>
             Rotate by:
             <input type="text" name="rot" value="0"/>
         </label>
         <textarea name="text">
         </textarea>
-    <input type="submit" value="Submit Query" />
+        <input type="submit" value="Submit Query" />
     </form>
     </body>
 </html> 
 """
-@app.route("/encrypted", methods=['POST'])
+
+@app.route("/", methods =['POST'])
+def index():
+    return caesar_form
+
 def encrypt():
     text = request.form['text']
     rot = request.form['rot']
     rot = int(rot)
     encrypted = rotate_string(text, rot)
     return '<h1>' + encrypted + '<h1>'
-
-@app.route("/", methods=['POST'])
-def index():
-    return caesar_form
-
-
 
 app.run()
