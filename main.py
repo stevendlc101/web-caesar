@@ -37,7 +37,7 @@ caesar_form = """
     </body>
 </html> 
 """
-@app.route("/")
+@app.route("/", methods=['POST'])
 def index():
     return caesar_form
 
@@ -48,9 +48,5 @@ def encrypt():
     rot = int(rot)
     encrypted = rotate_string(text, rot)
     return '<h1>' + encrypted + '<h1>'
-
-
-
-
 
 app.run()
